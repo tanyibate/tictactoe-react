@@ -7,6 +7,7 @@ class App extends Component {
 
   constructor(props){
     super(props);
+    this.increaseScore = this.increaseScore.bind(this);
     this.state = {
       playable: false,
       xIsNext: false,
@@ -16,6 +17,7 @@ class App extends Component {
   }
 
   increaseScore(player){
+    
     if(player === "playerOne"){
       this.setState({playerOneScore: this.state.playerOneScore + 1})
     }
@@ -27,7 +29,7 @@ class App extends Component {
       <div className="interface">
         <div className="game">
           <Player playerID = {'Player One'} playerScore = {`Score: ${this.state.playerOneScore}`}/>
-          <Board/>
+          <Board increaseScore={this.increaseScore}/>
           <Player playerID = {'Player Two'} playerScore = {`Score: ${this.state.playerTwoScore}`}/>
         </div>
         

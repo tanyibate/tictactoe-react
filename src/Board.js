@@ -7,6 +7,7 @@ export default class Board extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+            playerOneScore: 0,
             squares: Array(9).fill(null),
             xIsNext: true,
         }
@@ -25,11 +26,18 @@ export default class Board extends React.Component{
         ];
         for (let i = 0; i < lines.length; i++) {
           const [a, b, c] = lines[i];
+
+          let winner = 'playerOne';
+          
           if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
+            console.log("Hello")
+
+            if(squares[a] === 'X') winner = "playerOne";
+            else winner = 'playerTwo';
+            this.props.increaseScore(winner);
           }
         }
-        return null;
+        
       }
     
     
@@ -40,6 +48,7 @@ export default class Board extends React.Component{
             squares: squares,
             xIsNext: !this.state.xIsNext,
         });
+        this.calculateWinner(squares)
       }
     
 
