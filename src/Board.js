@@ -6,10 +6,11 @@ export default class Board extends React.Component{
 
     constructor(props){
         super(props)
+        //this.clickHandler = this.clickHandler.bind(this);
         this.state = {
             playerOneScore: 0,
             squares: Array(9).fill(null),
-            xIsNext: true,
+            
         }
       }
     
@@ -34,7 +35,10 @@ export default class Board extends React.Component{
 
             if(squares[a] === 'X') winner = "playerOne";
             else winner = 'playerTwo';
-            this.props.increaseScore(winner);
+            let increase = this.props.increaseScore;
+            increase(winner);
+            this.props.instructionTextHandler("gameEnded",winner)
+            
           }
         }
         
@@ -42,13 +46,19 @@ export default class Board extends React.Component{
     
     
       clickHandler(i){
-        const squares = this.state.squares.slice();
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-            squares: squares,
-            xIsNext: !this.state.xIsNext,
-        });
+        if(this.props.playable){
+            const squares = this.state.squares.slice();
+            console.log(this.state.xIsNext)
+            squares[i] = this.props.xIsNext ? 'X' : 'O';
+            this.setState({
+                squares: squares,
+                
+            });
+        this.props.changeXisNext()
         this.calculateWinner(squares)
+        
+        }
+        
       }
     
 
