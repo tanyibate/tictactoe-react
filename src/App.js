@@ -104,7 +104,7 @@ class App extends Component {
 
 
   clickHandler = (i) => {
-    if(this.state.playable){
+    if(this.state.playable && !this.state.squares[i]){
         const squares = this.state.squares.slice();
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
