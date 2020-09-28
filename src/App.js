@@ -127,10 +127,7 @@ class App extends Component {
         <div className="game">
           <Player playerID = {'Player One'} playerScore = {`Score: ${this.state.playerOneScore}`}/>
           <Board increaseScore={this.increaseScore} 
-          playable = {this.state.playable} 
-          instructionTextHandler = {this.instructionTextHandler} 
-          xIsNext = {this.state.xIsNext} 
-          changeXisNext ={this.changeXisNext} 
+           
           squares={this.state.squares}
           clickHandler = {this.clickHandler}/>
           <Player playerID = {'Player Two'} playerScore = {`Score: ${this.state.playerTwoScore}`}/>
